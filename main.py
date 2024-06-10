@@ -12,8 +12,11 @@ def main():
         
         if choice == '1':
             description = input("Enter name or description: \n")
-            password = input("Enter password: \n")
-            db.save(description, password) # TODO
+            password = input("Enter password for the record to save: \n")
+            master_password = input("Now enter the password to encrypt the data: \n")
+
+            hash = encrypt_password(password, master_password):
+            db.save(description, hash)
         elif choice == '2':
             description = input("Enter name or description: ")
             password = db.query(description)

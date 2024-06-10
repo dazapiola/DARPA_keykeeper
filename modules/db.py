@@ -1,6 +1,8 @@
 from modules.ciphersFiles import decrypt_file
 from re import search
 from search_key import search_key_path
+import uuid
+import datetime
 
 class DB:
     def __init__(self):
@@ -28,6 +30,12 @@ class DB:
                     return col[2]
             
         return  None
+    
+    def save(self, description, password):#TODO: falta ver como agregar un valor nuevo automaticamente al archivo cifrado.
+        id = uuid.uuid4()
+        created = datetime.datetime.now()
+        db_file.write(f'{id}:{description}:{password}:{created}')
+
 
 if __name__ == '__main__':
     db = DB()
