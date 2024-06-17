@@ -1,6 +1,7 @@
 import sys
 import os
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox, QInputDialog
+from PyQt5.QtGui import QClipboard
 from config.config import Config
 from keykeeper import KeyKeeper
 
@@ -93,7 +94,9 @@ class KeyKeeperApp(QWidget):
 
         password = self.passwords.get(service)
         if password:
-            QMessageBox.information(self, 'Contraseña', f'Contraseña para {service}: {password}')
+            clipboard = QApplication.clipboard()
+            clipboard.setText(password)
+            QMessageBox.information(self, 'Contraseña', f'Contraseña para {service}: {password} (copiada al portapapeles)')
         else:
             QMessageBox.warning(self, 'Warning', 'Servicio no encontrado.')
 

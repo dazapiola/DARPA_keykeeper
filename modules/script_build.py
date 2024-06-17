@@ -2,7 +2,7 @@ import subprocess
 import platform
 
 def build_executable():
-    subprocess.run(["pyinstaller", "--onefile", "--windowed", "tu_programa.py"])
+    subprocess.run(["pyinstaller", "--onefile", "--windowed", "--workpath", "./build", "--distpath", "./output", "../app.py"])
 
 def create_windows_installer():
     subprocess.run(["iscc", "setup.iss"])
